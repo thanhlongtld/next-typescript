@@ -3,7 +3,11 @@ import React, { useRef } from 'react';
 import Card from '../ui/Card';
 import classes from './NewMeetupForm.module.css';
 
-const NewMeetupForm: React.FC<any> = (props) =>{
+interface Props {
+  onAddMeetup: (meetupData: { title: string; image: string; address: string; description: string }) => void;
+}
+
+const NewMeetupForm: React.FC<any> = (props) => {
   const titleInputRef = useRef<HTMLInputElement>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
   const addressInputRef = useRef<HTMLInputElement>(null);
@@ -31,25 +35,20 @@ const NewMeetupForm: React.FC<any> = (props) =>{
     <Card>
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.control}>
-          <label htmlFor='title'>Meetup Title</label>
-          <input type='text' required id='title' ref={titleInputRef} />
+          <label htmlFor="title">Meetup Title</label>
+          <input type="text" required id="title" ref={titleInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='image'>Meetup Image</label>
-          <input type='url' required id='image' ref={imageInputRef} />
+          <label htmlFor="image">Meetup Image</label>
+          <input type="url" required id="image" ref={imageInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='address'>Address</label>
-          <input type='text' required id='address' ref={addressInputRef} />
+          <label htmlFor="address">Address</label>
+          <input type="text" required id="address" ref={addressInputRef} />
         </div>
         <div className={classes.control}>
-          <label htmlFor='description'>Description</label>
-          <textarea
-            id='description'
-            required
-            rows={5}
-            ref={descriptionInputRef}
-          ></textarea>
+          <label htmlFor="description">Description</label>
+          <textarea id="description" required rows={5} ref={descriptionInputRef}></textarea>
         </div>
         <div className={classes.actions}>
           <button>Add Meetup</button>
@@ -57,6 +56,6 @@ const NewMeetupForm: React.FC<any> = (props) =>{
       </form>
     </Card>
   );
-}
+};
 
 export default NewMeetupForm;
